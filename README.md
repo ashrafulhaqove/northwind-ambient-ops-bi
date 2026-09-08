@@ -2,7 +2,7 @@
 
 **Candidate:** Md. Ashraful Haque  
 **Role:** Business Intelligence Engineer, Global Operations  
-**Submitted:** 2026-09-12
+**Submitted:** Partial submission — see withdrawal note
 
 ---
 
@@ -66,18 +66,7 @@ psql -c "\copy note FROM 'data/note.csv' CSV HEADER"
 
 *(≤150 words, as required)*
 
-The assessment measures SQL debugging and Retool proficiency well, but underweights the skills that matter most in operational BI: understanding *why* data is shaped the way it is, not just fixing queries that operate on it. A BI engineer who can spot a LEFT JOIN bug but can't explain why the replica has no primary keys — or what that means for downstream trust — is only half-useful.
-
-It also doesn't test stakeholder communication under ambiguity. The DECISIONS.md section hints at this, but a stronger signal would be a raw Slack thread or a conflicting verbal brief, not a clean written list of requirements.
-
-Finally, the SCD2 clinician table and the mid-quarter rubric change are the most realistic parts of the dataset. More of that texture — and less of the obvious bugs — would better separate candidates.
+The assessment is well-constructed and tests a meaningful range of BI skills. If I were to suggest one area to expand: it could go deeper on data trust and lineage — not just finding query bugs, but also asking candidates to reason about where data comes from, how it gets there, and what assumptions might quietly break in production. The SCD2 clinician table and the mid-quarter rubric and SLA changes are the most realistic parts of the dataset and I found them the most interesting to work through. More problems of that shape — where the data itself requires careful interpretation — would be a great addition. The stakeholder conflict exercise is also valuable; a verbal or unstructured version of it might surface how candidates communicate under ambiguity, which is hard to test in writing.
 
 ---
 
-## Live review prep
-
-The 45-minute live session covers:
-1. Walkthrough of the reconciliation waterfall
-2. Keyboard-only operator loop in the Retool app
-3. Q&A on any decision in this repo
-4. Implementing a new requirement on the spot

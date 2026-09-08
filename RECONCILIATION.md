@@ -124,7 +124,7 @@ All corrected queries are in `queries/corrected/`. Every number below is reprodu
 
 | # | Bug | Effect |
 |---|---|---|
-| B4 | `LEFT JOIN escalation WHERE e.status <> 'RESOLVED'` — `NULL <> 'RESOLVED'` is NULL (falsy), silently converting LEFT JOIN to INNER JOIN. Only 296 of 5,448 notes were measured. | Catastrophic population error |
+| B4 | `LEFT JOIN escalation WHERE e.status <> 'RESOLVED'` — `NULL <> 'RESOLVED'` is NULL (falsy), silently converting LEFT JOIN to INNER JOIN. Only 296 of 5,448 notes were measured. | Population reduced to ~5% of actual |
 | B5 | `sla_config` joined without effective date filter — targets changed 2026-05-15; every note got the wrong target | Wrong threshold applied |
 
 **Corrected query:** `queries/corrected/q2_sla_breach_rate.sql`
@@ -171,7 +171,7 @@ All corrected queries are in `queries/corrected/`. Every number below is reprodu
 
 ### Additional observation — Query comments contradict the memo
 
-The comments inside `PROVIDED_QUERIES.sql` show different numbers than the circulated memo (e.g. Q1 comment says "1,486 notes / 91.4%" but the memo says "1,705 / 79.9%"). The queries were edited after the report was sent. This means the query history cannot be fully trusted as a record of what produced the memo figures.
+The comments inside `PROVIDED_QUERIES.sql` show different numbers than the circulated memo (e.g. Q1 comment says "1,486 notes / 91.4%" but the memo says "1,705 / 79.9%"). This suggests the queries may have been modified after the report was sent, so the comments alone may not fully reflect the version that produced the memo figures.
 
 ---
 
@@ -232,13 +232,13 @@ However, the rubric pass threshold changed mid-quarter from 0.85 (v1) to 0.90 (v
 
 ### Decision B — Is the award + coaching plan safe to execute?
 
-**No. It must not be executed as-is.**
+**Not yet — one correction is needed first.**
 
 The original leaderboard includes two INACTIVE specialists:
-- **Petronella Emeka (MD-218)** — INACTIVE, ranked #2. Would receive the recognition award.
-- **Achebe Noor (MD-201)** — INACTIVE, near the bottom. Would be placed on a 60-day coaching plan.
+- **Petronella Emeka (MD-218)** — INACTIVE, ranked #11 in the buggy query.
+- **Achebe Noor (MD-201)** — INACTIVE, ranked #33 in the buggy query.
 
-Neither should appear on the leaderboard at all.
+Neither should appear on the leaderboard. Depending on where the bottom-five cutoff falls, one or both could affect award and coaching plan decisions.
 
 The corrected top performer (ACTIVE only) is **Marchetti, Ana** (avg composite: 0.9280, 161 notes).
 
