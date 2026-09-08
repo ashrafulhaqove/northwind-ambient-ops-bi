@@ -150,7 +150,7 @@ All corrected queries are in `queries/corrected/`. Every number below is reprodu
 
 | # | Bug | Effect |
 |---|---|---|
-| B8 | No `WHERE m.status = 'ACTIVE'` filter — 2 INACTIVE specialists on the leaderboard | Petronella Emeka (INACTIVE) at #2 would receive award; Achebe Noor (INACTIVE) would be placed on coaching plan |
+| B8 | No `WHERE m.status = 'ACTIVE'` filter — 2 INACTIVE specialists on the leaderboard | Petronella Emeka (INACTIVE) ranked #11; Achebe Noor (INACTIVE) ranked #33 — both would affect award/coaching decisions |
 | B9 | `COALESCE(word_count, 0)` — NULL means transcript failed, not zero words. Deflates averages unfairly | Skews avg_word_count down for some specialists |
 
 **Corrected query:** `queries/corrected/q4_mds_leaderboard.sql`
@@ -240,7 +240,11 @@ The original leaderboard includes two INACTIVE specialists:
 
 Neither should appear on the leaderboard at all.
 
-The corrected top performer (ACTIVE only) is **Marchetti, Ana**.
+The corrected top performer (ACTIVE only) is **Marchetti, Ana** (avg composite: 0.9280, 161 notes).
+
+In the buggy query, Petronella Emeka (INACTIVE) ranks #11 and Achebe Noor (INACTIVE) ranks #33. Depending on where the bottom-five cutoff falls, one or both could affect coaching plan decisions.
+
+There are also two different specialists both named "Domingo, Rafael" (MD-206 and MD-227) in the dataset — confirming that grouping by `mds_name` instead of `mds_id` would silently merge two people's records.
 
 **Query that proves it:** `queries/corrected/q4_mds_leaderboard.sql` — run with and without `AND m.status = 'ACTIVE'` to see both INACTIVE specialists appear in the original output.
 
